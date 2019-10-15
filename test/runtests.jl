@@ -651,3 +651,9 @@ end
     s = StructArray{ComplexF64}((rand(2,2), rand(2,2)))
     @test isa(s .+ s, StructArray)
 end
+
+@testset "OffsetArray zero" begin
+    s = StructArray{ComplexF64}((rand(2), rand(2)))
+    soff = OffsetArray(s, 0:1)
+    @test isa(zero(soff).parent, StructArray)
+end
